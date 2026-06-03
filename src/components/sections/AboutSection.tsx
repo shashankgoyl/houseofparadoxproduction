@@ -100,7 +100,7 @@ export default function AboutSection() {
 
             <div className="space-y-5 font-montserrat text-ivory/60 font-light leading-relaxed">
               <p>
-                House of Paradox is a luxury creative production studio born from a passion for storytelling that transcends the ordinary. Based in the heart of Mumbai, we are where style meets substance.
+                House of Paradox is a luxury creative production studio born from a passion for storytelling that transcends the ordinary. Based in the heart of Delhi, we are where style meets substance.
               </p>
               <p>
                 We craft timeless stories that define brands, inspire audiences and leave a lasting impact. Our team of seasoned creatives, directors, and photographers bring an obsessive attention to detail and an unrelenting pursuit of excellence.

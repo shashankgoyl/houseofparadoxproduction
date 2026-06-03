@@ -35,7 +35,7 @@ const projects = [
     aspect: "portrait",
     color: "#111118",
     accent: "#D4AF37",
-    description: "Mumbai Fashion Week coverage",
+    description: "Delhi Fashion Week coverage",
   },
   {
     id: 4,

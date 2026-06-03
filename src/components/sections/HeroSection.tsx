@@ -48,7 +48,7 @@ export default function HeroSection() {
           transition={{ duration: 1.2, delay: 2.4, ease: [0.16, 1, 0.3, 1] }}
           className="font-montserrat text-xs uppercase text-gold/70 mb-10 tracking-[0.45em]"
         >
-          Mumbai, India
+          Delhi, India
         </motion.p>
 
         {/* Main Logo Mark */}

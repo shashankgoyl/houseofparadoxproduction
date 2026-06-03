@@ -4,10 +4,10 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "House of Paradox — Where Style Becomes Story",
   description:
-    "House of Paradox is a luxury creative production studio based in Mumbai, India. We craft timeless stories through photography, video production, podcast production, event coverage, creative direction, and content creation.",
+    "House of Paradox is a luxury creative production studio based in Delhi, India. We craft timeless stories through photography, video production, podcast production, event coverage, creative direction, and content creation.",
   keywords: [
     "House of Paradox",
-    "luxury photography Mumbai",
+    "luxury photography Delhi",
     "fashion photography",
     "video production India",
     "creative direction",

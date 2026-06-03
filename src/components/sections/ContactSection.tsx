@@ -56,7 +56,7 @@ const contactInfo = [
     ),
     label: "Location",
     value: "Delhi, India",
-    href: "https://maps.google.com/?q=Mumbai,India",
+    href: "https://maps.google.com/?q=Delhi,India",
   },
 ];
 

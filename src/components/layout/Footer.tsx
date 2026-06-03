@@ -53,7 +53,7 @@ export default function Footer() {
               </div>
 
               <p className="font-montserrat text-sm text-ivory/40 font-light leading-relaxed max-w-xs mb-8">
-                A luxury creative production studio based in Mumbai, India. We craft timeless stories that define brands and inspire audiences.
+                A luxury creative production studio based in Delhi, India. We craft timeless stories that define brands and inspire audiences.
               </p>
 
               {/* Social links */}
@@ -107,7 +107,7 @@ export default function Footer() {
             © {year} House of Paradox. All rights reserved.
           </p>
           <p className="font-montserrat text-[11px] tracking-[0.2em] text-ivory/20">
-            houseofparadoxproduction.com · Mumbai, India
+            houseofparadoxproduction.com · Delhi, India
           </p>
         </div>
       </div>
