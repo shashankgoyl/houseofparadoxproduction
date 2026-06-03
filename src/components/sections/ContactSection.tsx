@@ -32,8 +32,8 @@ const contactInfo = [
       </svg>
     ),
     label: "Email",
-    value: "hello@houseofparadox.com",
-    href: "mailto:hello@houseofparadox.com",
+    value: "hello@houseofparadoxproduction.com",
+    href: "mailto:hello@houseofparadoxproduction.com",
   },
   {
     icon: (
