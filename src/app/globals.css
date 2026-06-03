@@ -1,0 +1,196 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;900&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --gold: #D4AF37;
+  --gold-light: #F2C667;
+  --gold-dark: #B8960C;
+  --charcoal: #1A1A1A;
+  --jet: #0D0D0D;
+  --ivory: #F7F5EF;
+  --font-cinzel: 'Cinzel', serif;
+  --font-montserrat: 'Montserrat', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  background-color: var(--jet);
+  color: var(--ivory);
+  font-family: var(--font-montserrat);
+  overflow-x: hidden;
+}
+
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: var(--jet);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--gold-dark);
+  border-radius: 2px;
+}
+
+/* Gold Text Gradient */
+.gold-text {
+  background: linear-gradient(135deg, #D4AF37 0%, #F2C667 40%, #D4AF37 60%, #B8960C 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gold-shimmer {
+  background: linear-gradient(90deg, #D4AF37 0%, #F2C667 25%, #FAEAA0 50%, #F2C667 75%, #D4AF37 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 3s linear infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
+
+/* Divider Lines */
+.divider-gold {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+.divider-gold-left {
+  height: 1px;
+  background: linear-gradient(90deg, var(--gold), transparent);
+}
+
+/* Section padding */
+.section-padding {
+  padding: 100px 0;
+}
+
+@media (max-width: 768px) {
+  .section-padding {
+    padding: 70px 0;
+  }
+}
+
+/* Noise texture overlay */
+.noise-overlay::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Luxury card border */
+.luxury-card {
+  border: 1px solid rgba(212, 175, 55, 0.15);
+  background: rgba(26, 26, 26, 0.8);
+  backdrop-filter: blur(10px);
+  transition: border-color 0.4s ease, box-shadow 0.4s ease, transform 0.4s ease;
+}
+
+.luxury-card:hover {
+  border-color: rgba(212, 175, 55, 0.5);
+  box-shadow: 0 8px 40px rgba(212, 175, 55, 0.1);
+  transform: translateY(-4px);
+}
+
+/* Button styles */
+.btn-gold {
+  background: linear-gradient(135deg, #D4AF37, #F2C667, #D4AF37);
+  background-size: 200% auto;
+  color: #0D0D0D;
+  font-family: var(--font-cinzel);
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  transition: background-position 0.5s ease, box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+.btn-gold:hover {
+  background-position: right center;
+  box-shadow: 0 4px 25px rgba(212, 175, 55, 0.4);
+  transform: translateY(-2px);
+}
+
+.btn-outline-gold {
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  font-family: var(--font-cinzel);
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-outline-gold:hover {
+  background: rgba(212, 175, 55, 0.1);
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+}
+
+/* Grain overlay */
+.grain::after {
+  content: '';
+  position: fixed;
+  inset: -50%;
+  width: 200%;
+  height: 200%;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9990;
+  opacity: 0.4;
+}
+
+/* Horizontal scroll for mobile */
+.scroll-x {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.scroll-x::-webkit-scrollbar {
+  display: none;
+}
+
+/* Loading screen */
+@keyframes fadeOutUp {
+  to {
+    opacity: 0;
+    transform: translateY(-20px);
+    visibility: hidden;
+  }
+}
+
+.loading-exit {
+  animation: fadeOutUp 0.6s ease forwards;
+  animation-delay: 2s;
+}
+
+/* Shutter animation for logo */
+@keyframes shutterOpen {
+  from { clip-path: polygon(50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%); }
+  to { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+}
+
+.shutter-reveal {
+  animation: shutterOpen 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
