@@ -21,8 +21,8 @@ const contactInfo = [
       </svg>
     ),
     label: "Phone",
-    value: "+91 9711717136",
-    href: "tel:+919711717136",
+    value: "+91 9718955997",
+    href: "tel:+919718955997",
   },
   {
     icon: (
