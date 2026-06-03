@@ -44,7 +44,7 @@ const contactInfo = [
       </svg>
     ),
     label: "Website",
-    value: "www.houseofparadox.com",
+    value: "www.houseofparadoxproduction.com",
     href: "https://houseofparadoxproduction.com",
   },
   {
