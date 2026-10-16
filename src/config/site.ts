@@ -19,6 +19,8 @@ export const siteConfig = {
   notifyEmail: "tushar@houseofparadoxproduction.com",
   // Sender for those emails (domain verified in Resend; override with CONTACT_EMAIL_FROM).
   senderEmail: "House of Paradox Website <website@houseofparadoxproduction.com>",
+  // Sender of the automatic thank-you email to visitors (replies go to notifyEmail).
+  autoReplyFrom: "House of Paradox <hello@houseofparadoxproduction.com>",
   phone: "+91 9718955997",
   // WhatsApp: same number, digits only with country code (used for wa.me links).
   whatsappNumber: "919718955997",

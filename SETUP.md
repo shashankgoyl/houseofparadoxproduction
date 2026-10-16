@@ -52,6 +52,15 @@ Hitting **Reply** on a notification replies straight to the visitor.
 
 If Supabase or email fails, the other one still captures the lead. The visitor only sees an error if both fail.
 
+## 2b. Get a Quote builder + auto-reply
+
+- The contact form is a 5-step brief builder: service → date & city → budget → brief & reference links → contact details.
+- Edit budget ranges, city suggestions and service hints in `src/content/quote.ts`.
+- Every brief is saved to Supabase with all fields (`phone`, `company`, `shoot_date`, `date_flexible`, `city`, `budget`, `reference_links`, `auto_reply_sent`).
+- Tushar gets the full brief by email (tap-to-call / WhatsApp / reference links). Replying answers the visitor.
+- The visitor instantly gets a branded thank-you from `hello@houseofparadoxproduction.com` (replies go to Tushar) with their brief summary and a WhatsApp button.
+  For safety it only repeats the options they picked, never their typed message or links, and is limited to 3 per email address per 15 minutes.
+
 ## 3. Netlify (live site)
 
 ✅ `SUPABASE_URL`, `SUPABASE_SECRET_KEY` and `RESEND_API_KEY` are set on the Netlify project (keys marked secret).

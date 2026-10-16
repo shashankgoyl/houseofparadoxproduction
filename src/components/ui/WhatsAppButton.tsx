@@ -22,6 +22,9 @@ function WaIcon({ className }: { className?: string }) {
  */
 export default function WhatsAppButton() {
   const [open, setOpen] = useState(false);
+  // On phones, step aside while the quote form is on screen (it has its own
+  // WhatsApp links, and the floating button would cover its Send button).
+  const [hidden, setHidden] = useState(false);
   const panelId = useId();
   const rootRef = useRef<HTMLDivElement>(null);
   const toggleRef = useRef<HTMLButtonElement>(null);
@@ -46,12 +49,40 @@ export default function WhatsAppButton() {
     };
   }, [open]);
 
+  useEffect(() => {
+    const target = document.getElementById("contact");
+    if (!target || !("IntersectionObserver" in window)) return;
+    const small = window.matchMedia("(max-width: 1023px)");
+    let inView = false;
+    const update = () => {
+      const hide = small.matches && inView;
+      setHidden(hide);
+      if (hide) setOpen(false);
+    };
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        inView = entry.isIntersecting;
+        update();
+      },
+      { rootMargin: "0px 0px -35% 0px" }
+    );
+    io.observe(target);
+    small.addEventListener("change", update);
+    return () => {
+      io.disconnect();
+      small.removeEventListener("change", update);
+    };
+  }, []);
+
   const href = whatsappUrl();
 
   return (
     <div
       ref={rootRef}
-      className="fixed right-4 sm:right-6 z-30 flex flex-col items-end gap-3"
+      className={`fixed right-4 sm:right-6 z-30 flex flex-col items-end gap-3 transition-all duration-300 ${
+        hidden ? "pointer-events-none translate-y-4 opacity-0" : "opacity-100"
+      }`}
+      aria-hidden={hidden || undefined}
       style={{ bottom: "calc(1rem + env(safe-area-inset-bottom))" }}
     >
       {/* Chat card */}
