@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import SectionHeading from "@/components/ui/SectionHeading";
 
 const testimonials = [
@@ -46,7 +46,7 @@ export default function TestimonialsSection() {
   }, []);
 
   return (
-    <section className="section-padding relative overflow-hidden bg-charcoal/20">
+    <section id="testimonials" className="section-padding relative overflow-hidden bg-charcoal/20">
       <div className="absolute left-0 top-0 w-full h-px bg-gradient-to-r from-transparent via-gold/20 to-transparent" />
 
       {/* Background accent */}
@@ -63,9 +63,9 @@ export default function TestimonialsSection() {
         />
 
         {/* Testimonial card */}
-        <div className="relative min-h-[280px] flex items-center justify-center">
+        <div className="relative min-h-[280px] flex items-center justify-center" aria-live="polite">
           <AnimatePresence mode="wait">
-            <motion.div
+            <m.div
               key={active}
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -74,7 +74,7 @@ export default function TestimonialsSection() {
               className="max-w-3xl mx-auto"
             >
               {/* Quote mark */}
-              <div className="font-cinzel text-8xl text-gold/15 leading-none select-none mb-4">&ldquo;</div>
+              <div className="font-cinzel text-8xl text-gold/15 leading-none select-none mb-4" aria-hidden>&ldquo;</div>
 
               <p className="font-montserrat text-lg md:text-xl text-ivory/80 font-light leading-relaxed italic mb-8">
                 {testimonials[active].quote}
@@ -89,26 +89,31 @@ export default function TestimonialsSection() {
                   <p className="font-cinzel text-sm font-semibold text-ivory/80 tracking-wider">
                     {testimonials[active].name}
                   </p>
-                  <p className="font-montserrat text-xs tracking-widest text-gold/50 uppercase mt-1">
+                  <p className="font-montserrat text-xs tracking-widest text-gold/80 uppercase mt-1">
                     {testimonials[active].role}
                   </p>
                 </div>
               </div>
-            </motion.div>
+            </m.div>
           </AnimatePresence>
         </div>
 
         {/* Dots */}
-        <div className="flex justify-center gap-3 mt-8">
+        <div className="flex justify-center gap-1 mt-6">
           {testimonials.map((_, i) => (
             <button
               key={i}
               onClick={() => setActive(i)}
-              className={`transition-all duration-300 ${
-                i === active ? "w-8 h-1 bg-gold" : "w-2 h-1 bg-gold/30 hover:bg-gold/60"
-              }`}
+              className="group p-3 -m-1"
               aria-label={`Testimonial ${i + 1}`}
-            />
+              aria-current={i === active}
+            >
+              <span
+                className={`block transition-all duration-300 ${
+                  i === active ? "w-8 h-1 bg-gold" : "w-2 h-1 bg-gold/40 group-hover:bg-gold/70"
+                }`}
+              />
+            </button>
           ))}
         </div>
       </div>

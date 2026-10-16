@@ -1,7 +1,8 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import SectionHeading from "@/components/ui/SectionHeading";
+import { siteConfig } from "@/config/site";
 
 const stats = [
   { value: "200+", label: "Projects Delivered" },
@@ -18,7 +19,7 @@ export default function AboutSection() {
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
           {/* Left: Visual */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-80px" }}
@@ -69,7 +70,7 @@ export default function AboutSection() {
             </div>
 
             {/* Floating stat card */}
-            <motion.div
+            <m.div
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
@@ -77,16 +78,16 @@ export default function AboutSection() {
               className="absolute -bottom-6 -right-6 bg-jet border border-gold/30 p-6 shadow-2xl"
             >
               <p className="font-cinzel text-3xl font-bold gold-text">5+</p>
-              <p className="font-montserrat text-xs tracking-widest text-ivory/50 uppercase mt-1">Years of<br/>Excellence</p>
-            </motion.div>
+              <p className="font-montserrat text-xs tracking-widest text-ivory/70 uppercase mt-1">Years of<br/>Excellence</p>
+            </m.div>
 
             {/* Decorative corner lines */}
             <div className="absolute -top-4 -left-4 w-8 h-8 border-t border-l border-gold/40" />
             <div className="absolute -bottom-4 -right-16 w-8 h-8 border-b border-r border-gold/40" />
-          </motion.div>
+          </m.div>
 
           {/* Right: Text */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-80px" }}
@@ -100,7 +101,7 @@ export default function AboutSection() {
 
             <div className="space-y-5 font-montserrat text-ivory/60 font-light leading-relaxed">
               <p>
-                House of Paradox is a luxury creative production studio born from a passion for storytelling that transcends the ordinary. Based in the heart of Delhi, we are where style meets substance.
+                House of Paradox is a luxury creative production studio in Delhi, India, founded by {siteConfig.founderName}. We produce fashion and product photography, brand films, podcasts, event coverage, creative direction and social content for brands that want to be remembered.
               </p>
               <p>
                 We craft timeless stories that define brands, inspire audiences and leave a lasting impact. Our team of seasoned creatives, directors, and photographers bring an obsessive attention to detail and an unrelenting pursuit of excellence.
@@ -115,20 +116,20 @@ export default function AboutSection() {
               {stats.map((stat) => (
                 <div key={stat.label} className="bg-jet p-6 group hover:bg-charcoal transition-colors duration-300">
                   <p className="font-cinzel text-3xl font-bold gold-text mb-1">{stat.value}</p>
-                  <p className="font-montserrat text-xs tracking-[0.25em] uppercase text-ivory/40">{stat.label}</p>
+                  <p className="font-montserrat text-xs tracking-[0.25em] uppercase text-ivory/55">{stat.label}</p>
                 </div>
               ))}
             </div>
 
-            <motion.button
+            <m.button
               whileHover={{ x: 6 }}
               onClick={() => document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" })}
               className="mt-10 flex items-center gap-3 font-cinzel text-sm tracking-[0.2em] uppercase text-gold hover:text-gold-light transition-colors duration-300"
             >
               Work With Us
               <span className="text-xl leading-none">→</span>
-            </motion.button>
-          </motion.div>
+            </m.button>
+          </m.div>
         </div>
       </div>
     </section>

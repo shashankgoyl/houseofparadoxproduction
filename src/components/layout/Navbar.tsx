@@ -1,8 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import Link from "next/link";
+import { m, AnimatePresence } from "framer-motion";
 
 const navLinks = [
   { label: "Services", href: "#services" },
@@ -21,6 +20,19 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Mobile menu: lock page scroll while open, close on Escape
+  useEffect(() => {
+    if (!menuOpen) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setMenuOpen(false);
+    window.addEventListener("keydown", onKey);
+    return () => {
+      document.body.style.overflow = prev;
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [menuOpen]);
+
   const handleNavClick = (href: string) => {
     setMenuOpen(false);
     const el = document.querySelector(href);
@@ -29,11 +41,8 @@ export default function Navbar() {
 
   return (
     <>
-      <motion.header
-        initial={{ y: -80, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 2.2 }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      <header
+        className={`navbar-in fixed top-0 left-0 right-0 z-50 transition-[background-color,padding,border-color] duration-500 ${
           scrolled
             ? "bg-jet/90 backdrop-blur-md border-b border-gold/10 py-3"
             : "bg-transparent py-5"
@@ -46,9 +55,9 @@ export default function Navbar() {
             className="flex items-center gap-3 group"
           >
             <div className="relative w-10 h-10">
-              <svg viewBox="0 0 40 40" className="w-full h-full">
-                <text x="1" y="32" fontFamily="Cinzel, serif" fontSize="34" fontWeight="700" fill="url(#navGold)">H</text>
-                <text x="18" y="32" fontFamily="Cinzel, serif" fontSize="34" fontWeight="700" fill="url(#navGold)">P</text>
+              <svg viewBox="0 0 40 40" className="w-full h-full" aria-hidden>
+                <text x="1" y="32" className="font-cinzel" fontSize="34" fontWeight="700" fill="url(#navGold)">H</text>
+                <text x="18" y="32" className="font-cinzel" fontSize="34" fontWeight="700" fill="url(#navGold)">P</text>
                 <circle cx="20" cy="18" r="5" fill="none" stroke="url(#navGold)" strokeWidth="1"/>
                 <line x1="3" y1="3" x2="37" y2="37" stroke="url(#navGold)" strokeWidth="1"/>
                 <defs>
@@ -59,6 +68,7 @@ export default function Navbar() {
                 </defs>
               </svg>
             </div>
+            <span className="sr-only sm:hidden">House of Paradox</span>
             <div className="hidden sm:block">
               <p className="font-cinzel text-sm font-semibold tracking-[0.2em] gold-text leading-none">
                 HOUSE <span className="text-ivory/40 font-light">of</span> PARADOX
@@ -75,7 +85,7 @@ export default function Navbar() {
               <button
                 key={link.label}
                 onClick={() => handleNavClick(link.href)}
-                className="font-cinzel text-xs tracking-[0.25em] uppercase text-ivory/70 hover:text-gold transition-colors duration-300 relative group"
+                className="font-cinzel text-xs tracking-[0.25em] uppercase text-ivory/80 hover:text-gold transition-colors duration-300 relative group"
               >
                 {link.label}
                 <span className="absolute -bottom-1 left-0 w-0 h-px bg-gold group-hover:w-full transition-all duration-300" />
@@ -93,36 +103,39 @@ export default function Navbar() {
           <button
             className="md:hidden flex flex-col gap-1.5 p-2"
             onClick={() => setMenuOpen(!menuOpen)}
-            aria-label="Toggle menu"
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={menuOpen}
+            aria-controls="mobile-menu"
           >
-            <motion.span
+            <m.span
               animate={menuOpen ? { rotate: 45, y: 7 } : { rotate: 0, y: 0 }}
               className="block w-6 h-px bg-gold"
             />
-            <motion.span
+            <m.span
               animate={menuOpen ? { opacity: 0 } : { opacity: 1 }}
               className="block w-4 h-px bg-gold ml-auto"
             />
-            <motion.span
+            <m.span
               animate={menuOpen ? { rotate: -45, y: -7 } : { rotate: 0, y: 0 }}
               className="block w-6 h-px bg-gold"
             />
           </button>
         </div>
-      </motion.header>
+      </header>
 
       {/* Mobile menu */}
       <AnimatePresence>
         {menuOpen && (
-          <motion.div
+          <m.div
+            id="mobile-menu"
             initial={{ opacity: 0, x: "100%" }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: "100%" }}
             transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed inset-0 z-40 bg-jet/98 flex flex-col items-center justify-center gap-8"
+            className="fixed inset-0 z-40 bg-jet/95 backdrop-blur-md flex flex-col items-center justify-center gap-8"
           >
             {navLinks.map((link, i) => (
-              <motion.button
+              <m.button
                 key={link.label}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -131,9 +144,9 @@ export default function Navbar() {
                 className="font-cinzel text-2xl tracking-[0.3em] uppercase gold-text"
               >
                 {link.label}
-              </motion.button>
+              </m.button>
             ))}
-            <motion.button
+            <m.button
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
@@ -141,8 +154,8 @@ export default function Navbar() {
               className="btn-gold px-10 py-3 font-cinzel tracking-[0.25em] text-sm mt-4"
             >
               Book Now
-            </motion.button>
-          </motion.div>
+            </m.button>
+          </m.div>
         )}
       </AnimatePresence>
     </>

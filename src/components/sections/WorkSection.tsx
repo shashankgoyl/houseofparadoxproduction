@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import SectionHeading from "@/components/ui/SectionHeading";
 
 const categories = ["All", "Photography", "Video", "Events", "Creative"];
@@ -69,18 +69,18 @@ const projects = [
   },
 ];
 
-// Placeholder visuals using SVG patterns
+// Placeholder visuals using SVG patterns. TODO: replace with real project images.
 function ProjectCard({ project, index }: { project: typeof projects[0]; index: number }) {
   const [hovered, setHovered] = useState(false);
 
   return (
-    <motion.div
+    <m.div
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-60px" }}
       transition={{ duration: 0.7, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
-      className={`relative overflow-hidden cursor-pointer group ${
-        project.aspect === "landscape" ? "col-span-2" : "col-span-1"
+      className={`relative overflow-hidden cursor-default group ${
+        project.aspect === "landscape" ? "md:col-span-2" : "col-span-1"
       }`}
       style={{ aspectRatio: project.aspect === "landscape" ? "16/9" : project.aspect === "square" ? "1/1" : "3/4" }}
       onMouseEnter={() => setHovered(true)}
@@ -134,7 +134,7 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
       </div>
 
       {/* Overlay on hover */}
-      <motion.div
+      <m.div
         className="absolute inset-0 bg-jet/70"
         animate={{ opacity: hovered ? 1 : 0 }}
         transition={{ duration: 0.3 }}
@@ -147,32 +147,24 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
           <span className="inline-block border border-gold/30 bg-jet/60 px-3 py-1 font-montserrat text-[10px] tracking-[0.25em] uppercase text-gold/70">
             {project.type}
           </span>
-          <motion.div
-            animate={{ opacity: hovered ? 1 : 0, scale: hovered ? 1 : 0.8 }}
-            className="w-8 h-8 border border-gold/40 bg-jet/60 flex items-center justify-center"
-          >
-            <svg viewBox="0 0 16 16" className="w-4 h-4 text-gold" fill="none" stroke="currentColor" strokeWidth="1.5">
-              <path d="M3 13L13 3M13 3H6M13 3v7"/>
-            </svg>
-          </motion.div>
         </div>
 
         {/* Bottom info */}
-        <motion.div
+        <m.div
           animate={{ y: hovered ? 0 : 12, opacity: hovered ? 1 : 0.7 }}
           transition={{ duration: 0.3 }}
         >
           <p className="font-montserrat text-xs tracking-widest uppercase text-gold/60 mb-1">{project.category}</p>
           <h3 className="font-cinzel text-xl md:text-2xl font-semibold text-ivory/90">{project.title}</h3>
-          <motion.p
+          <m.p
             animate={{ height: hovered ? "auto" : 0, opacity: hovered ? 1 : 0 }}
             className="font-montserrat text-sm text-ivory/50 mt-2 overflow-hidden"
           >
             {project.description}
-          </motion.p>
-        </motion.div>
+          </m.p>
+        </m.div>
       </div>
-    </motion.div>
+    </m.div>
   );
 }
 
@@ -201,10 +193,11 @@ export default function WorkSection() {
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
+                aria-pressed={activeCategory === cat}
                 className={`px-4 py-2 font-cinzel text-xs tracking-[0.2em] uppercase transition-all duration-300 ${
                   activeCategory === cat
                     ? "bg-gold text-jet"
-                    : "border border-gold/20 text-ivory/40 hover:border-gold/50 hover:text-gold/70"
+                    : "border border-gold/20 text-ivory/60 hover:border-gold/50 hover:text-gold/70"
                 }`}
               >
                 {cat}
@@ -214,7 +207,7 @@ export default function WorkSection() {
         </div>
 
         <AnimatePresence mode="wait">
-          <motion.div
+          <m.div
             key={activeCategory}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -225,17 +218,17 @@ export default function WorkSection() {
             {filtered.map((project, i) => (
               <ProjectCard key={project.id} project={project} index={i} />
             ))}
-          </motion.div>
+          </m.div>
         </AnimatePresence>
 
         {/* CTA */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           className="text-center mt-14"
         >
-          <p className="font-montserrat text-sm text-ivory/40 mb-6 tracking-wide">
+          <p className="font-montserrat text-sm text-ivory/55 mb-6 tracking-wide">
             Ready to create something extraordinary together?
           </p>
           <button
@@ -244,7 +237,7 @@ export default function WorkSection() {
           >
             Start A Project
           </button>
-        </motion.div>
+        </m.div>
       </div>
     </section>
   );

@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import clsx from "clsx";
 
 interface SectionHeadingProps {
@@ -8,8 +8,8 @@ interface SectionHeadingProps {
   title: string;
   subtitle?: string;
   centered?: boolean;
-  light?: boolean;
   className?: string;
+  id?: string;
 }
 
 export default function SectionHeading({
@@ -18,9 +18,10 @@ export default function SectionHeading({
   subtitle,
   centered = false,
   className,
+  id,
 }: SectionHeadingProps) {
   return (
-    <motion.div
+    <m.div
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
@@ -43,7 +44,7 @@ export default function SectionHeading({
           )}
         </p>
       )}
-      <h2 className="font-cinzel font-bold text-3xl md:text-4xl lg:text-5xl gold-text leading-tight">
+      <h2 id={id} className="font-cinzel font-bold text-3xl md:text-4xl lg:text-5xl gold-text leading-tight whitespace-pre-line">
         {title}
       </h2>
       {subtitle && (
@@ -51,6 +52,6 @@ export default function SectionHeading({
           {subtitle}
         </p>
       )}
-    </motion.div>
+    </m.div>
   );
 }
