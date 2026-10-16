@@ -49,6 +49,6 @@ export const FAQS: Faq[] = [
   },
   {
     q: "How do I book House of Paradox or get a quote?",
-    a: `Fill in the enquiry form on houseofparadoxproduction.com, call ${siteConfig.phone}, or email ${siteConfig.email} with your project details, timeline and requirements. The team replies within 24 hours.`,
+    a: `Fill in the enquiry form on houseofparadoxproduction.com, call or WhatsApp ${siteConfig.phone}, or email ${siteConfig.email} with your project details, timeline and requirements. The team replies within 24 hours.`,
   },
 ];

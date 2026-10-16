@@ -1,4 +1,4 @@
-import { siteConfig, activeSocials } from "@/config/site";
+import { siteConfig, activeSocials, whatsappUrl } from "@/config/site";
 import { SERVICE_DETAILS } from "@/content/services";
 import { FAQS } from "@/content/faqs";
 
@@ -21,6 +21,7 @@ export function GET() {
     `- Website: ${s.url}`,
     `- Email: ${s.email}`,
     `- Phone: ${s.phone}`,
+    `- WhatsApp: ${whatsappUrl()}`,
     `- Location: ${s.location}`,
     `- Enquiries: ${s.url}/#contact (replies within 24 hours)`,
     ...activeSocials.map((x) => `- ${x.label}: ${x.url}`),

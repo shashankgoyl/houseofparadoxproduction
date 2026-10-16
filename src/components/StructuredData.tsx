@@ -1,4 +1,4 @@
-import { siteConfig, activeSocials } from "@/config/site";
+import { siteConfig, activeSocials, whatsappUrl } from "@/config/site";
 import { SERVICE_DETAILS } from "@/content/services";
 import { FAQS } from "@/content/faqs";
 
@@ -54,6 +54,7 @@ export default function StructuredData() {
         email: siteConfig.email,
         areaServed: siteConfig.countryCode,
         availableLanguage: ["English", "Hindi"],
+        url: whatsappUrl(),
       },
       founder: { "@id": id("founder") },
       ...(sameAs.length > 0 && { sameAs }),

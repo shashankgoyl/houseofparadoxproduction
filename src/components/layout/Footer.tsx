@@ -1,4 +1,4 @@
-import { siteConfig, activeSocials } from "@/config/site";
+import { siteConfig, activeSocials, whatsappUrl } from "@/config/site";
 
 type FooterLink = { label: string; href: string; external?: boolean };
 
@@ -20,6 +20,7 @@ const footerLinks: Record<string, FooterLink[]> = {
     { label: "Contact", href: "#contact" },
   ],
   Connect: [
+    { label: "WhatsApp", href: whatsappUrl(), external: true },
     ...activeSocials.map((s) => ({ label: s.label, href: s.url, external: true })),
     { label: "Email Us", href: `mailto:${siteConfig.email}` },
   ],

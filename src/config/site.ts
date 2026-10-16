@@ -20,6 +20,10 @@ export const siteConfig = {
   // Sender for those emails (domain verified in Resend; override with CONTACT_EMAIL_FROM).
   senderEmail: "House of Paradox Website <website@houseofparadoxproduction.com>",
   phone: "+91 9718955997",
+  // WhatsApp: same number, digits only with country code (used for wa.me links).
+  whatsappNumber: "919718955997",
+  whatsappMessage:
+    "Hi House of Paradox! I came across your website and would like to know more about your services.",
   location: "Delhi, India",
   city: "Delhi",
   regionCode: "IN-DL",
@@ -47,3 +51,7 @@ export const socialMeta: Record<SocialKey, { label: string; short: string }> = {
 export const activeSocials = (Object.keys(siteConfig.social) as SocialKey[])
   .filter((key) => siteConfig.social[key].trim() !== "")
   .map((key) => ({ key, url: siteConfig.social[key], ...socialMeta[key] }));
+
+/** wa.me link that opens WhatsApp with the message already typed in. */
+export const whatsappUrl = (message: string = siteConfig.whatsappMessage) =>
+  `https://wa.me/${siteConfig.whatsappNumber}?text=${encodeURIComponent(message)}`;
